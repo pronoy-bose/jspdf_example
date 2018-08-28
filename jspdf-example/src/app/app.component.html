@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Sample HTML Table</h5>
+    </div>
+    <div class="col-md-6 text-right">
+      <button class="btn btn-primary" (click)="getPdfData()">Export To Pdf</button>
+    </div>
+  </div>
+  <table class="table table-bordered table-sm table-responsive" border="3px">
+    <tr>
+      <td>
+        <b>Report Id</b>
+      </td>
+      <td>
+        <b>Status</b>
+      </td>
+      <td>
+        <b>Project</b>
+      </td>
+      <td class="task-size">
+        <b>Task</b>
+      </td>
+      <td>
+          <b>Business Unit</b>
+      </td>
+      <td class="date-size">
+        <b>Expense Date</b>
+      </td>
+      <td>
+        <b>Expense Type</b>
+      </td>
+      <td>
+        <b>Quantity</b>
+      </td>
+      <td>
+        <b>Receipt Currency</b>
+      </td>
+      <td>
+        <b>Receipt Price</b>
+      </td>
+      <td class="base-amt">
+        <b>Employee Base Currency Amount</b>
+      </td>
+      <td>
+        <b>Billable</b>
+      </td>
+      <td>
+        <b>Reimbursible</b>
+      </td>
+      <td>
+        <b>Attachments</b>
+      </td>
+      <td>
+        <b>Missing Receipts</b>
+      </td>
+      <td>
+        <b>Exchange Rate</b>
+      </td>
+      <td style="min-width: 250px;">
+        <b>Notes</b>
+      </td>
+    </tr>
+    <tr *ngFor="let field of fieldArray">
+      <td>{{reportid}}</td>
+      <td *ngIf="field.status == 'O'" [ngClass]="{'text-link':field.status}" (click)="showHistory(field.id)"> Approved </td>
+      <td *ngIf="field.status == 'R'" [ngClass]="{'text-link':field.status}" (click)="showHistory(field.id)"> Rejected </td>
+      <td *ngIf="field.status == 'S'" [ngClass]="{'text-link':field.status}" (click)="showHistory(field.id)"> Submitted </td>
+      <td *ngIf="field.status == 'N'" [ngClass]="{'text-link':field.status}" (click)="showHistory(field.id)"> Open </td>
+      <td *ngIf="field.status == 'G'" [ngClass]="{'text-link':field.status}" (click)="showHistory(field.id)"> Charged </td>
+      <td *ngIf="field.status == 'I'" [ngClass]="{'text-link':field.status}" (click)="showHistory(field.id)"> Invoiced </td>
+      <td *ngIf="field.status == 'U'" [ngClass]="{'text-link':field.status}" (click)="showHistory(field.id)"> Reversed </td>
+      <td> {{field.projectName}}</td>
+      <td> {{field.projectTaskName}}</td>
+      <td> {{field.deptName}} </td>
+      <td> {{field.expenseDate}}</td>
+      <td> {{field.expenseTypeName}}</td>
+      <td> {{field.quantity}}</td>
+      <td> {{field.currencyCode}}</td>
+      <td> {{field.receiptPrice}}</td>
+      <td> {{field.baseExchangeAmt}}</td>
+      <td *ngIf="field.billable == true">Yes</td>
+      <td *ngIf="field.billable == false">No</td>
+      <td *ngIf="field.reimbursible == true">Yes</td>
+      <td *ngIf="field.reimbursible == false">No</td>
+      <td>
+        <ul class="list-unstyled">
+          <li *ngFor="let file of field.expenseAttachments">
+            <a class="text-link" (click)="downloadFile(file.duplicateFileName, file.fileType, field.id)">{{file.originalFileName}}</a>
+          </li>
+        </ul>
+      </td>
+      <td *ngIf="field.missingReceipts == true">Yes</td>
+      <td *ngIf="field.missingReceipts == false">No</td>
+      <td> {{field.exchangeRateWithDesc}}</td>
+      <td> {{field.notes}}</td>
+    </tr>
+  </table>
+</div>
