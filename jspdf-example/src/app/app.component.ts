@@ -235,7 +235,7 @@ export class AppComponent implements OnInit {
     pdf.setDrawColor(128, 128, 128); //Setting the line color to gray
     pdf.line(35, yCoordinate, pdf.internal.pageSize.getWidth() - 35, yCoordinate);
     //Header Creation begin
-    pdf.text('<b>Expense Report</b>', 35, yCoordinate);
+    pdf.fromHTML('<b>Expense Report</b>', 35, yCoordinate);
     yCoordinate += 12;
     pdf.fromHTML('Tracking number: ' + this.reportid, 35, yCoordinate);
     yCoordinate += 12;
