@@ -1,6 +1,5 @@
 # JSPDF Example For Angular 6
-## Reference for JSPDF AUTOTABLE OPTIONS 
-```https://github.com/simonbengtsson/jsPDF-AutoTable```
+##### Reference for JSPDF AUTOTABLE OPTIONS :: ```https://github.com/simonbengtsson/jsPDF-AutoTable```
 
 Install :- 
 #### npm install jspdf jspdf-autotable
